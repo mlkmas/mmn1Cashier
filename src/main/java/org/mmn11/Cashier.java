@@ -30,7 +30,7 @@ public class Cashier
         String s="";
         for( receiptLine it: receiptLines)
         {
-            s+= it.toString()+"/n";
+            s+= it.toString()+"\n";
         }
         return s;
     }
@@ -45,6 +45,7 @@ public class Cashier
     }
     public double payment(double amount)
     {
+
         double purchasePrice=this.cusTotSum(),sum=amount-purchasePrice;
         register+=sum;
         this.receiptLines = new Vector<>();

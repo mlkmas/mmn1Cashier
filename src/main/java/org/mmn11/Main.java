@@ -4,19 +4,41 @@ import org.mmn11.Cashier;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+
+        Item item1=new Item("box1",30);
+        Item item2=new Item("box2",30);
+        Item item3=new Item("box3",30);
+        Item item4=new Item("milk",8.90);
+        Item item5=new Item("yogurt",12.90);
+        Item item6=new Item("apple",12.90);
+        Item item7=new Item("flour",3.75);
+        Item item8=new Item("water",3.75);
         Cashier cashier1 = new Cashier();
+        Cashier cashier3 = new Cashier(1032.78);
         cashier1.setRegister(400);
-        Cashier cashier2 = new Cashier(1032.78);
 
+        /**/
+        System.out.println("the register's initial total sum "+cashier3.getRegister());
+        cashier1.addItemToPurchase(item1,3);
+        cashier1.addItemToPurchase(item4,2);
+        cashier1.addItemToPurchase(item3,1);
+        cashier1.addItemToPurchase(item8,3);
+        System.out.println("customer total purchase is:"+cashier1.cusTotSum());
+        System.out.println(cashier1.toString());
+        System.out.println("customer's change: "+cashier1.payment(200));
+        System.out.println("the register's total sum "+cashier1.getRegister());
 
+        /**/
 
-//        for (int i = 1; i <= 5; i++) {
-//            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-//            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-//            System.out.println("i = " + i);
-//        }
+        System.out.println("the register's initial total sum "+cashier3.getRegister());
+        cashier3.addItemToPurchase(item3,3);
+        cashier3.addItemToPurchase(item5,2);
+        cashier3.addItemToPurchase(item6,1);
+        cashier3.addItemToPurchase(item7,3);
+        System.out.println("customer total purchase is:"+cashier3.cusTotSum());
+        System.out.println(cashier3.toString());
+        System.out.println("customer's change: "+cashier3.payment(200));
+        System.out.println("the register's total sum "+cashier3.getRegister());
+
     }
 }

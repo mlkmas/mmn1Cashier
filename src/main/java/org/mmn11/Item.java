@@ -17,6 +17,18 @@ public class Item
     }
     public String toString()
     {
-        return "item name: "+name+ " price: "+price;
+        return "item name: "+name+ " price: "+price+" ";
+    }
+    public void setPrice(double newPrice)
+    {
+        this.price=newPrice;
+    }
+    public String getName()
+    {
+        return name;
+    }
+    public void setName(String newName)
+    {
+        this.name=newName;
     }
 }
