@@ -2,10 +2,9 @@ package org.mmn11a;
 import java.util.Scanner;
 import java.util.Vector;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
-public class Main {
+public class Main
+{
 
     static public Item getItemByName(String itemName,Vector<Item> items)
     {
@@ -38,40 +37,67 @@ public class Main {
 
 
         Cashier cashier1 = new Cashier();
+        cashier1.setRegister(1600.24);
         Scanner scan=new Scanner(System.in);
         int userInput=0,itemQuan=0,i=1;
         String itemNum="";
         System.out.println("Welcome to Cashier Calculator\n");
-        while(userInput<5)
+        while(userInput!=5)
         {
             System.out.println("Please choose an option:\n" + "1. Show the items' catalog and add an item to the purchase\n"
             + "2.Show current receipt\n" + "3.Finalize payment\n" + "4.Check total money in register\n" + "5. Exit\n");
-            userInput=scan.nextInt();
-            scan.nextLine();
+            if(scan.hasNextInt())
+            {
+                userInput=scan.nextInt();
+                scan.nextLine(); // consume newline
+            } else
+            {
+                scan.next(); // consume bad input
+                continue;
+            }
             switch (userInput)
             {
                 case 1:
+                    System.out.println("The Catalog:");
+                    i=1;
                     for(Item item:items)
                     {
                         System.out.println(i+ item.toString());
+                        i++;
                     }
                     while (!itemNum.equals("0"))
                     {
-                        System.out.println("Please enter the item  you would like to purchase, or checkout!\n");
+                        System.out.println("Please enter the item  you would like to purchase, or 0 to checkout!\n");
                         itemNum=scan.nextLine();
                         if(itemNum.equals("0"))
                         {
-                            userInput=3;
-                            break;
+                            System.out.println(cashier1);
+                            System.out.println("The total payment is: "+cashier1.cusTotSum() +" ,please enter your payment:\n");
+                            cashier1.payment(scan.nextDouble());
+                            scan.nextLine();
+                            System.out.println("Thank you for using Cashier Calculator\n");
+                            System.exit(0);
+
+
                         }
-                        else{
-                            System.out.println("Please enter the quantity you would like to purchase\n");
+                        else
+                        {
+                            Item selectedItem=getItemByName(itemNum,items);
+                            if(selectedItem==null)
+                            {
+                                System.out.println("Item not found!Try again");
+                                continue;
+                            }
+                            System.out.println("Enter quantity:");
                             itemQuan=scan.nextInt();
-                            scan.nextLine();//empty buffer just in case
-                            cashier1.addItemToPurchase(getItemByName(itemNum,items),itemQuan);
+                            scan.nextLine(); // consume newline
+
+                            cashier1.addItemToPurchase(selectedItem, itemQuan);
+                            System.out.println("Added " + itemQuan + " " + itemNum + "(s) to cart.");
                         }
 
                     }
+                    break;
 
                 case 2:
                     System.out.println(cashier1);
@@ -89,6 +115,7 @@ public class Main {
                     break;
                 case 5:
                     System.exit(0);
+                    break;
 
             }
         }
