@@ -1,8 +1,10 @@
-package org.mmn11;
+package org.mmn11a;
 import java.util.Vector;
 
 public class Cashier
 {
+
+
     private double register;//amount in the register
     private Vector<receiptLine> receiptLines;//current customer's purchase receipt
 

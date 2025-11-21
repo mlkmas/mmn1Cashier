@@ -1,4 +1,4 @@
-package org.mmn11;
+package org.mmn11a;
 
 public class receiptLine
 {
@@ -43,3 +43,4 @@ public class receiptLine
     }
 
 }
+
